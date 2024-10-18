@@ -1,16 +1,23 @@
-require("dotenv").config();
-const express = require("express");
-
-const port = process.env.PORT;
-
+const express = require('express');
 const app = express();
+const port = 3000;
 
-app.get("/", (req, res) => {
+// Simulación de productos
+const productos = [
+  { id: 1, nombre: 'Pizza Margherita', precio: 8.99 },
+  { id: 2, nombre: 'Pizza Pepperoni', precio: 10.99 },
+  { id: 3, nombre: 'Pasta Carbonara', precio: 12.50 }
+];
+
+// Ruta para obtener productos
+app.get('/productos', (req, res) => {
   res.send({
-    message: "Hello world!",
+    message: "Lista de productos",
+    data: productos
   });
 });
 
+// Servidor escuchando
 app.listen(port, () => {
-  console.log(`Example app listening at port: ${port}`);
+  console.log(`Servidor escuchando en el puerto: ${port}`);
 });
