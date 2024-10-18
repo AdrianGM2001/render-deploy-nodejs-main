@@ -11,10 +11,7 @@ const productos = [
 
 // Ruta para obtener productos
 app.get('/productos', (req, res) => {
-  res.send({
-    message: "Lista de productos",
-    data: productos
-  });
+  res.send(productos);  // Enviar solo la lista de productos
 });
 
 // Servidor escuchando
