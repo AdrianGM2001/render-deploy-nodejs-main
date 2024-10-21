@@ -46,7 +46,20 @@ app.post('/clientes/registro', (req, res) => {
 });
 
 
+// Ruta para login de un cliente
+app.post('/clientes/login', (req, res) => {
+  const { email, password } = req.body;
 
+  // Buscar el cliente por email
+  const cliente = clientes.find(c => c.email === email);
+
+  // Verificar si el cliente existe y si la contraseña coincide
+  if (cliente && cliente.password === password) {
+    res.status(200).send({ message: 'Login exitoso', cliente });
+  } else {
+    res.status(401).send({ message: 'Email o contraseña incorrectos' });
+  }
+});
 
 // Servidor escuchando
 app.listen(port, () => {
