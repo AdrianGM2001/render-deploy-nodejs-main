@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+app.use(express.json());
 
 // Lista de productos
 const productos = [
@@ -22,6 +23,7 @@ app.get('/clientes', (req, res) => {
 
 // Ruta para agregar un nuevo cliente
 app.post('/clientes/registro', (req, res) => {
+  console.log("Datos recibidos:" + req.body); // Verificar los datos recibidos en el cuerpo
   const { dni, nombre, direccion, telefono, email, password } = req.body;
 
   // Crear un nuevo cliente
