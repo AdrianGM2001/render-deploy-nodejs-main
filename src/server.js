@@ -21,7 +21,7 @@ app.get('/clientes', (req, res) => {
 });
 
 // Ruta para agregar un nuevo cliente
-app.post('/clientes', (req, res) => {
+app.post('/clientes/registro', (req, res) => {
   const { dni, nombre, direccion, telefono, email, password } = req.body;
 
   // Crear un nuevo cliente
