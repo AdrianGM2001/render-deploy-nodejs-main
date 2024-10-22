@@ -55,7 +55,7 @@ app.post('/clientes/login', (req, res) => {
 
   // Verificar si el cliente existe y si la contraseña coincide
   if (cliente && cliente.password === password) {
-    res.status(200).send({ message: 'Login exitoso', cliente });
+    res.status(200).send(cliente);
   } else {
     res.status(401).send({ message: 'Email o contraseña incorrectos' });
   }
