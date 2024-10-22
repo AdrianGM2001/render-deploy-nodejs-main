@@ -5,10 +5,90 @@ app.use(express.json());
 
 // Lista de productos
 const productos = [
-  { id: 1, nombre: 'Pizza Margherita', precio: 8.99 },
-  { id: 2, nombre: 'Pizza Pepperoni', precio: 10.99 },
-  { id: 3, nombre: 'Pasta Carbonara', precio: 12.50 }
-];
+  {
+      "id": 1,
+      "nombre": "Pizza Margarita",
+      "precio": 8.50,
+      "tipo": "pizza",
+      "size": "GRANDE",
+      "ingredientes": [
+          {
+              "id": 1,
+              "nombre": "Mozzarella",
+              "alergenos": ["Lácteos"]
+          },
+          {
+              "id": 2,
+              "nombre": "Tomate",
+              "alergenos": []
+          },
+          {
+              "id": 3,
+              "nombre": "Albahaca",
+              "alergenos": []
+          }
+      ]
+  },
+  {
+      "id": 2,
+      "nombre": "Pizza Pepperoni",
+      "precio": 9.00,
+      "tipo": "pizza",
+      "size": "MEDIANA",
+      "ingredientes": [
+          {
+              "id": 1,
+              "nombre": "Mozzarella",
+              "alergenos": ["Lácteos"]
+          },
+          {
+              "id": 4,
+              "nombre": "Pepperoni",
+              "alergenos": []
+          }
+      ]
+  },
+  {
+      "id": 3,
+      "nombre": "Espagueti a la Boloñesa",
+      "precio": 7.00,
+      "tipo": "pasta",
+      "size": null,
+      "ingredientes": [
+          {
+              "id": 5,
+              "nombre": "Espagueti",
+              "alergenos": ["Gluten"]
+          },
+          {
+              "id": 6,
+              "nombre": "Carne Molida",
+              "alergenos": []
+          },
+          {
+              "id": 7,
+              "nombre": "Salsa Boloñesa",
+              "alergenos": ["Lácteos"]
+          }
+      ]
+  },
+  {
+      "id": 4,
+      "nombre": "Coca-Cola",
+      "precio": 2.50,
+      "tipo": "bebida",
+      "size": "MEDIANA",
+      "ingredientes": [] // No tiene ingredientes
+  },
+  {
+      "id": 5,
+      "nombre": "Agua Mineral",
+      "precio": 1.50,
+      "tipo": "bebida",
+      "size": "PEQUENA",
+      "ingredientes": [] // No tiene ingredientes
+  }
+]
 
 // Ruta para obtener productos
 app.get('/productos', (req, res) => {
