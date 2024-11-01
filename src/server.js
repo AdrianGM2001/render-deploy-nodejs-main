@@ -50,7 +50,7 @@ const productos = [
   },
   {
       "id": 3,
-      "nombre": "Espagueti a la Boloñesa",
+      "nombre": "Espagueti",
       "precio": 7.00,
       "tipo": "pasta",
       "size": null,
@@ -91,7 +91,7 @@ const productos = [
   // Nueva pizza
   {
       "id": 6,
-      "nombre": "Pizza Cuatro Quesos",
+      "nombre": "Cuatro Quesos",
       "precio": 10.00,
       "tipo": "pizza",
       "size": "GRANDE",
