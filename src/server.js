@@ -7,7 +7,7 @@ app.use(express.json());
 const productos = [
   {
       "id": 1,
-      "nombre": "Pizza Margarita",
+      "nombre": "Margarita",
       "precio": 8.50,
       "tipo": "pizza",
       "size": "GRANDE",
@@ -31,7 +31,7 @@ const productos = [
   },
   {
       "id": 2,
-      "nombre": "Pizza Pepperoni",
+      "nombre": "Pepperoni",
       "precio": 9.00,
       "tipo": "pizza",
       "size": "MEDIANA",
@@ -87,15 +87,79 @@ const productos = [
       "tipo": "bebida",
       "size": "PEQUENA",
       "ingredientes": [] // No tiene ingredientes
+  },
+  // Nueva pizza
+  {
+      "id": 6,
+      "nombre": "Pizza Cuatro Quesos",
+      "precio": 10.00,
+      "tipo": "pizza",
+      "size": "GRANDE",
+      "ingredientes": [
+          {
+              "id": 1,
+              "nombre": "Mozzarella",
+              "alergenos": ["Lácteos"]
+          },
+          {
+              "id": 2,
+              "nombre": "Gorgonzola",
+              "alergenos": ["Lácteos"]
+          },
+          {
+              "id": 3,
+              "nombre": "Parmesano",
+              "alergenos": ["Lácteos"]
+          },
+          {
+              "id": 4,
+              "nombre": "Ricotta",
+              "alergenos": ["Lácteos"]
+          }
+      ]
+  },
+  // Nueva bebida
+  {
+      "id": 7,
+      "nombre": "Fanta Naranja",
+      "precio": 2.00,
+      "tipo": "bebida",
+      "size": "MEDIANA",
+      "ingredientes": [] // No tiene ingredientes
+  },
+  // Nuevo plato de pasta
+  {
+      "id": 8,
+      "nombre": "Pasta Alfredo",
+      "precio": 8.00,
+      "tipo": "pasta",
+      "size": null,
+      "ingredientes": [
+          {
+              "id": 9,
+              "nombre": "Fideos",
+              "alergenos": ["Gluten"]
+          },
+          {
+              "id": 10,
+              "nombre": "Salsa Alfredo",
+              "alergenos": ["Lácteos"]
+          },
+          {
+              "id": 11,
+              "nombre": "Perejil",
+              "alergenos": []
+          }
+      ]
   }
-]
+];
 
 // Ruta para obtener productos
 app.get('/productos', (req, res) => {
   res.send(productos);  // Enviar solo la lista de productos
 });
 
-//Lista de clientes
+// Lista de clientes
 let clientes = []
 app.get('/clientes', (req, res) => {
   res.send(clientes);
@@ -124,7 +188,6 @@ app.post('/clientes/registro', (req, res) => {
   // Responder con el nuevo cliente
   res.status(201).send(nuevoCliente);
 });
-
 
 // Ruta para login de un cliente
 app.post('/clientes/login', (req, res) => {
