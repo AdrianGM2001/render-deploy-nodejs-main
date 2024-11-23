@@ -160,7 +160,18 @@ app.get('/productos', (req, res) => {
 });
 
 // Lista de clientes
-let clientes = []
+let clientes = [
+    {
+        id: 1,
+        dni: "12345678A",
+        nombre: "Juan Pérez",
+        direccion: "Calle Falsa 123",
+        telefono: "555123456",
+        email: "juan@gmail.com",
+        password: "1234",
+        pedidos: [] 
+      }
+]
 app.get('/clientes', (req, res) => {
   res.send(clientes);
 });
