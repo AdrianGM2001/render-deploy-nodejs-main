@@ -167,9 +167,14 @@ app.get('/clientes', (req, res) => {
 
 // Ruta para agregar un nuevo cliente
 app.post('/clientes/registro', (req, res) => {
-  console.log("Datos recibidos:" + req.body); // Verificar los datos recibidos en el cuerpo
+  console.log("Datos recibidos:" + req.body); 
   const { dni, nombre, direccion, telefono, email, password } = req.body;
-
+  // Verificar si ya existe un cliente con el mismo email
+  const clienteExistente = clientes.find(c => c.email === email);
+  if (clienteExistente) {
+    // Si el email ya está registrado, devolver un error
+    return res.status(400).send({ message: 'El usuario con el email ${email} ya existe.' });
+  }
   // Crear un nuevo cliente
   const nuevoCliente = {
     id: clientes.length + 1, // Generar un nuevo ID
