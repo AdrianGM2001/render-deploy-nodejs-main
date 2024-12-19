@@ -3,155 +3,349 @@ const app = express();
 const port = 3000;
 app.use(express.json());
 
-// Lista de productos
+const ingredientes = [
+    {
+        "id": 1,
+        "nombre": "Mozzarella",
+        "alergenos": ["Lactosa", "Gluten"]
+    },
+    {
+        "id": 2,
+        "nombre": "Parmesano",
+        "alergenos": ["Lactosa"]
+    },
+    {
+        "id": 3,
+        "nombre": "Gorgonzola",
+        "alergenos": ["Lactosa"]
+    },
+    {
+        "id": 4,
+        "nombre": "Ricotta",
+        "alergenos": ["Lactosa"]
+    },
+    {
+        "id": 5,
+        "nombre": "Tomate",
+        "alergenos": []
+    },
+    {
+        "id": 6,
+        "nombre": "Aceitunas negras",
+        "alergenos": ["Sulfitos"]
+    },
+    {
+        "id": 7,
+        "nombre": "Piña",
+        "alergenos": ["Sulfitos"]
+    },
+    {
+        "id": 8,
+        "nombre": "Pimiento",
+        "alergenos": ["Apio"]
+    },
+    {
+        "id": 9,
+        "nombre": "Cebolla",
+        "alergenos": []
+    },
+    {
+        "id": 10,
+        "nombre": "Champiñones",
+        "alergenos": []
+    },
+    {
+        "id": 11,
+        "nombre": "Pepperoni",
+        "alergenos": ["Sulfitos"]
+    },
+    {
+        "id": 12,
+        "nombre": "Pollo",
+        "alergenos": ["Mostaza"]
+    },
+    {
+        "id": 13,
+        "nombre": "Bacon",
+        "alergenos": ["Sulfitos"]
+    },
+    {
+        "id": 14,
+        "nombre": "Salchicha italiana",
+        "alergenos": ["Lactosa", "Sulfitos"]
+    },
+    {
+        "id": 15,
+        "nombre": "Jamón",
+        "alergenos": ["Lactosa", "Sulfitos"]
+    },
+    {
+        "id": 16,
+        "nombre": "Macarrones",
+        "alergenos": ["Gluten"]
+    },
+    {
+        "id": 17,
+        "nombre": "Espaguetis",
+        "alergenos": ["Gluten"]
+    },
+    {
+        "id": 18,
+        "nombre": "Ternera",
+        "alergenos": []
+    },
+    {
+        "id": 19,
+        "nombre": "Queso",
+        "alergenos": ["Lactosa"]
+    }
+];
+
 const productos = [
-  {
-      "id": 1,
-      "nombre": "Margarita",
-      "precio": 8.50,
-      "tipo": "pizza",
-      "size": "GRANDE",
-      "ingredientes": [
-          {
-              "id": 1,
-              "nombre": "Mozzarella",
-              "alergenos": ["Lácteos"]
-          },
-          {
-              "id": 2,
-              "nombre": "Tomate",
-              "alergenos": []
-          },
-          {
-              "id": 3,
-              "nombre": "Albahaca",
-              "alergenos": []
-          }
-      ]
-  },
-  {
-      "id": 2,
-      "nombre": "Pepperoni",
-      "precio": 9.00,
-      "tipo": "pizza",
-      "size": "MEDIANA",
-      "ingredientes": [
-          {
-              "id": 1,
-              "nombre": "Mozzarella",
-              "alergenos": ["Lácteos"]
-          },
-          {
-              "id": 4,
-              "nombre": "Pepperoni",
-              "alergenos": []
-          }
-      ]
-  },
-  {
-      "id": 3,
-      "nombre": "Espagueti",
-      "precio": 7.00,
-      "tipo": "pasta",
-      "size": null,
-      "ingredientes": [
-          {
-              "id": 5,
-              "nombre": "Espagueti",
-              "alergenos": ["Gluten"]
-          },
-          {
-              "id": 6,
-              "nombre": "Carne Molida",
-              "alergenos": []
-          },
-          {
-              "id": 7,
-              "nombre": "Salsa Boloñesa",
-              "alergenos": ["Lácteos"]
-          }
-      ]
-  },
-  {
-      "id": 4,
-      "nombre": "Coca-Cola",
-      "precio": 2.50,
-      "tipo": "bebida",
-      "size": "MEDIANA",
-      "ingredientes": [] // No tiene ingredientes
-  },
-  {
-      "id": 5,
-      "nombre": "Agua Mineral",
-      "precio": 1.50,
-      "tipo": "bebida",
-      "size": "PEQUENA",
-      "ingredientes": [] // No tiene ingredientes
-  },
-  // Nueva pizza
-  {
-      "id": 6,
-      "nombre": "Cuatro Quesos",
-      "precio": 10.00,
-      "tipo": "pizza",
-      "size": "GRANDE",
-      "ingredientes": [
-          {
-              "id": 1,
-              "nombre": "Mozzarella",
-              "alergenos": ["Lácteos"]
-          },
-          {
-              "id": 2,
-              "nombre": "Gorgonzola",
-              "alergenos": ["Lácteos"]
-          },
-          {
-              "id": 3,
-              "nombre": "Parmesano",
-              "alergenos": ["Lácteos"]
-          },
-          {
-              "id": 4,
-              "nombre": "Ricotta",
-              "alergenos": ["Lácteos"]
-          }
-      ]
-  },
-  // Nueva bebida
-  {
-      "id": 7,
-      "nombre": "Fanta Naranja",
-      "precio": 2.00,
-      "tipo": "bebida",
-      "size": "MEDIANA",
-      "ingredientes": [] // No tiene ingredientes
-  },
-  // Nuevo plato de pasta
-  {
-      "id": 8,
-      "nombre": "Pasta Alfredo",
-      "precio": 8.00,
-      "tipo": "pasta",
-      "size": null,
-      "ingredientes": [
-          {
-              "id": 9,
-              "nombre": "Fideos",
-              "alergenos": ["Gluten"]
-          },
-          {
-              "id": 10,
-              "nombre": "Salsa Alfredo",
-              "alergenos": ["Lácteos"]
-          },
-          {
-              "id": 11,
-              "nombre": "Perejil",
-              "alergenos": []
-          }
-      ]
-  }
+    {
+        "id": 1,
+        "nombre": "Hot-N-Ready Pepperoni",
+        "precio": 10.99,
+        "tipo": "pizza",
+        "size": null,
+        "ingredientes": [
+            ingredientes[10], // Pepperoni
+            ingredientes[0],  // Mozzarella
+            ingredientes[4],  // Tomate
+            ingredientes[8]   // Cebolla
+        ]
+    },
+    {
+        "id": 2,
+        "nombre": "Hot-N-Ready Cheese",
+        "precio": 10.99,
+        "tipo": "pizza",
+        "size": null,
+        "ingredientes": [
+            ingredientes[0],  // Mozzarella
+            ingredientes[1],  // Parmesano
+            ingredientes[3],  // Ricotta
+            ingredientes[2],  // Gorgonzola
+            ingredientes[4]   // Tomate
+        ]
+    },
+    {
+        "id": 3,
+        "nombre": "Sweet N Spicy Chicken",
+        "precio": 16.2,
+        "tipo": "pizza",
+        "size": null,
+        "ingredientes": [
+            ingredientes[11], // Pollo
+            ingredientes[0],  // Mozzarella
+            ingredientes[8],  // Cebolla
+            ingredientes[4]   // Tomate
+        ]
+    },
+    {
+        "id": 4,
+        "nombre": "BBQ Chicken",
+        "precio": 16.2,
+        "tipo": "pizza",
+        "size": null,
+        "ingredientes": [
+            ingredientes[11], // Pollo
+            ingredientes[0],  // Mozzarella
+            ingredientes[12], // Bacon
+            ingredientes[8],  // Cebolla
+            ingredientes[4]   // Tomate
+        ]
+    },
+    {
+        "id": 5,
+        "nombre": "3 Meat Treat",
+        "precio": 18.5,
+        "tipo": "pizza",
+        "size": null,
+        "ingredientes": [
+            ingredientes[10], // Pepperoni
+            ingredientes[13], // Salchicha italiana
+            ingredientes[12], // Bacon
+            ingredientes[0],  // Mozzarella
+            ingredientes[4]   // Tomate
+        ]
+    },
+    {
+        "id": 6,
+        "nombre": "Hula Hawaiian",
+        "precio": 16.2,
+        "tipo": "pizza",
+        "size": null,
+        "ingredientes": [
+            ingredientes[14], // Jamón
+            ingredientes[6],  // Piña
+            ingredientes[0],  // Mozzarella
+            ingredientes[4]   // Tomate
+        ]
+    },
+    {
+        "id": 7,
+        "nombre": "Ultimate Supreme",
+        "precio": 18.5,
+        "tipo": "pizza",
+        "size": null,
+        "ingredientes": [
+            ingredientes[10], // Pepperoni
+            ingredientes[13], // Salchicha italiana
+            ingredientes[12], // Bacon
+            ingredientes[7],  // Pimiento
+            ingredientes[9],  // Champiñones
+            ingredientes[0],  // Mozzarella
+            ingredientes[4]   // Tomate
+        ]
+    },
+    {
+        "id": 8,
+        "nombre": "Veggie",
+        "precio": 16.2,
+        "tipo": "pizza",
+        "size": null,
+        "ingredientes": [
+            ingredientes[7],  // Pimiento
+            ingredientes[8],  // Cebolla
+            ingredientes[5],  // Aceitunas
+            ingredientes[9],  // Champiñones
+            ingredientes[4],  // Tomate
+            ingredientes[0]   // Mozzarella
+        ]
+    },
+    {
+        "id": 9,
+        "nombre": "Macarrones del mediterráneo",
+        "precio": 6.5,
+        "tipo": "pasta",
+        "size": null,
+        "ingredientes": [
+            ingredientes[15], // Macarrones
+            ingredientes[7],  // Pimiento
+            ingredientes[5],  // Aceitunas
+            ingredientes[18]  // Queso
+        ]
+    },
+    {
+        "id": 10,
+        "nombre": "Espaguetis con tomate y cebolla",
+        "precio": 7.5,
+        "tipo": "pasta",
+        "size": null,
+        "ingredientes": [
+            ingredientes[16], // Espaguetis
+            ingredientes[4],  // Tomate
+            ingredientes[8]   // Cebolla
+        ]
+    },
+    {
+        "id": 11,
+        "nombre": "Espaguetis con tomate",
+        "precio": 5.5,
+        "tipo": "pasta",
+        "size": null,
+        "ingredientes": [
+            ingredientes[16], // Espaguetis
+            ingredientes[4],  // Tomate
+            ingredientes[18]  // Queso
+        ]
+    },
+    {
+        "id": 12,
+        "nombre": "Espaguetis con tomate, salchicha italiana y queso",
+        "precio": 5.5,
+        "tipo": "pasta",
+        "size": null,
+        "ingredientes": [
+            ingredientes[16], // Espaguetis
+            ingredientes[4],  // Tomate
+            ingredientes[18], // Queso
+            ingredientes[13]  // Salchicha italiana
+        ]
+    },
+    {
+        "id": 13,
+        "nombre": "Espaguetis con tomate, ternera y queso",
+        "precio": 5.5,
+        "tipo": "pasta",
+        "size": null,
+        "ingredientes": [
+            ingredientes[16], // Espaguetis
+            ingredientes[4],  // Tomate
+            ingredientes[18], // Queso
+            ingredientes[17]  // Ternera
+        ]
+    },
+    {
+        "id": 14,
+        "nombre": "Espaguetis con albóndigas",
+        "precio": 5.5,
+        "tipo": "pasta",
+        "size": null,
+        "ingredientes": [
+            ingredientes[16], // Espaguetis
+            ingredientes[17], // Ternera
+            ingredientes[4],  // Tomate
+            ingredientes[18]  // Queso
+        ]
+    },
+    {
+        "id": 15,
+        "nombre": "Coca-Cola",
+        "precio": 1.5,
+        "tipo": "bebida",
+        "size": null,
+        "ingredientes": []
+    },
+    {
+        "id": 16,
+        "nombre": "Fanta de naranja",
+        "precio": 1.5,
+        "tipo": "bebida",
+        "size": null,
+        "ingredientes": []
+    },
+    {
+        "id": 17,
+        "nombre": "Cerveza",
+        "precio": 1.5,
+        "tipo": "bebida",
+        "size": null,
+        "ingredientes": []
+    },
+    {
+        "id": 18,
+        "nombre": "Cerveza sin alcohol",
+        "precio": 1.5,
+        "tipo": "bebida",
+        "size": null,
+        "ingredientes": []
+    },
+    {
+        "id": 19,
+        "nombre": "RedBull",
+        "precio": 1.5,
+        "tipo": "bebida",
+        "size": null,
+        "ingredientes": []
+    },
+    {
+        "id": 20,
+        "nombre": "RedBull zero",
+        "precio": 1.5,
+        "tipo": "bebida",
+        "size": null,
+        "ingredientes": []
+    },
+    {
+        "id": 21,
+        "nombre": "RedBull sin azúcar",
+        "precio": 1.5,
+        "tipo": "bebida",
+        "size": null,
+        "ingredientes": []
+    }
 ];
 
 // Ruta para obtener productos
